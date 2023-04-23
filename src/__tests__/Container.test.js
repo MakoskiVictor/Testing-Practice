@@ -50,4 +50,8 @@ describe('<Container />', () => {
 
         expect(component.root.findByType(Gallery).props.data).toEqual(customData.data.photos.photo)
     })
+    // Es buena practica limpiar los mocks después de los tests
+    /* afterAll(() => {
+        axios.get.mockReset()
+    }) */
 })
