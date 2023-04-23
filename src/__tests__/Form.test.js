@@ -5,7 +5,7 @@ import { create, act } from 'react-test-renderer'
 let component
 const props = {
   history: {},
-  handleSubmit: () => { } //TODO
+  handleSubmit: jest.fn() //--> Llamada ficticia al mock
 }
 
 describe('<Form />', () => {
@@ -47,6 +47,11 @@ describe('<Form />', () => {
     const form = component.root.findByType('form')
 
     form.props.onSubmit()
-    //TODO
+    //Esperamos que el onSubmit haya sido llamada
+    expect(props.handleSubmit).toHaveBeenCalled()
+    //Para ver cuantas veces ha sido llamada la funcion
+    expect(props.handleSubmit).toHaveBeenCalledTimes(1)
+    //Para asegurarnos que el submit sea con X argumentos
+    expect(props.handleSubmit).toHaveBeenCalledWith(undefined, props.history, '')
   })
 })
